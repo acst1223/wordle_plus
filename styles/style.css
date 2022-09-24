@@ -45,25 +45,27 @@ nav ul li i:hover {
 footer {
   display: flex;
   width: 100%;
-  padding-top: 1rem;
+  padding: 1rem 5px;
+  justify-content: center;
   background-color: rgb(16, 18, 16);
   color: white;
 }
 footer input {
   background-color: rgb(16, 18, 16);
   color: white;
-  border: 1px solid white;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   flex: 1;
   border-radius: 0.4rem;
   font-size: 1.2rem;
   text-align: center;
+  max-width: 350px;
 }
 footer button {
   background-color: rgb(64, 79, 101);
   color: white;
   flex: 0;
   min-width: 4rem;
-  margin-left: 2px;
+  margin-left: 5px;
   padding: 0.5rem;
   border-radius: 0.4rem;
   font-size: 1.2rem;

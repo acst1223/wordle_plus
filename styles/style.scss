@@ -1,6 +1,7 @@
 $dark-background-color: rgb(16, 18, 16);
 $dark-text-color: white;
 $dark-button-background: rgb(64, 79, 101);
+$dark-border-color: rgba(255, 255, 255, 0.5);
 
 @mixin theme-colors($dark-theme: true) {
   @if $dark-theme {
@@ -20,7 +21,7 @@ $dark-button-background: rgb(64, 79, 101);
   @if $dark-theme {
     background-color: $dark-background-color;
     color: $dark-text-color;
-    border: 1px solid $dark-text-color;
+    border: 1px solid $dark-border-color;
   }
 }
 
@@ -78,7 +79,8 @@ nav {
 footer {
   display: flex;
   width: 100%;
-  padding-top: 1rem;
+  padding: 1rem 5px;
+  justify-content: center;
 
   @include theme-colors($dark-theme: true);
 
@@ -88,13 +90,14 @@ footer {
     border-radius: 0.4rem;
     font-size: 1.2rem;
     text-align: center;
+    max-width: 350px;
   }
 
   button {
     @include theme-button-colors($dark-theme: true);
     flex: 0;
     min-width: 4rem;
-    margin-left: 2px;
+    margin-left: 5px;
     padding: 0.5rem;
     border-radius: 0.4rem;
     font-size: 1.2rem;
