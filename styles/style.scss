@@ -10,7 +10,7 @@ $dark-text-color: white;
 
 @mixin theme-shadows($dark-theme: true) {
   @if $dark-theme {
-    box-shadow: 0.5rem 0 0.5rem white;
+    box-shadow: 0 0.1rem 0.5rem white;
   }
 }
 
