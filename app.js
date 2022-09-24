@@ -1,18 +1,15 @@
-h1 = document.createElement("h1");
-h1.innerHTML = "h1 test";
-body = document.querySelector("body");
-body.appendChild(h1);
+let langGame = "en";
+let wordData = null;
 
-let data = null;
-
-fetch("dicts/t.json")
-  .then((response) => response.json())
-  .then((d) => {
-    data = d;
-  });
+function loadData() {
+  fetch(`dicts/${langGame}.json`)
+    .then((response) => response.json())
+    .then((data) => {
+      wordData = data;
+    });
+}
+loadData();
 
 setTimeout(() => {
-  h1.innerHTML = data.ckk;
+  console.log("wordData", wordData);
 }, 100);
-
-console.log(data, 0);
