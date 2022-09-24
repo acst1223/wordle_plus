@@ -77,10 +77,8 @@ nav {
 
 footer {
   display: flex;
-  position: fixed;
-  bottom: 0;
   width: 100%;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
 
   @include theme-colors($dark-theme: true);
 

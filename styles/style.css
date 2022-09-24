@@ -44,10 +44,8 @@ nav ul li i:hover {
 
 footer {
   display: flex;
-  position: fixed;
-  bottom: 0;
   width: 100%;
-  padding-top: 0.5rem;
+  padding-top: 1rem;
   background-color: rgb(16, 18, 16);
   color: white;
 }
