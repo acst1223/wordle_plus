@@ -96,14 +96,19 @@ footer input {
   max-width: 350px;
 }
 footer button {
-  background-color: rgb(64, 79, 101);
-  color: white;
+  background-color: rgb(16, 18, 16);
+  color: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   flex: 0;
   min-width: 4rem;
   margin-left: 5px;
   padding: 0.5rem;
   border-radius: 0.4rem;
   font-size: 1.2rem;
-  border: none;
+  transition: all 0.3s ease;
   cursor: pointer;
+}
+footer button.valid {
+  background-color: rgb(78, 118, 177);
+  color: white;
 }/*# sourceMappingURL=style.css.map */

@@ -1,6 +1,8 @@
 $dark-background-color: rgb(16, 18, 16);
 $dark-text-color: white;
-$dark-button-background: rgb(64, 79, 101);
+$dark-text-invalid-color: rgb(255, 255, 255, 0.3);
+$dark-button-valid-background: rgb(78, 118, 177);
+$dark-button-background: rgb(16, 18, 16);
 $dark-border-color: rgba(255, 255, 255, 0.5);
 
 @mixin theme-colors($dark-theme: true) {
@@ -13,6 +15,14 @@ $dark-border-color: rgba(255, 255, 255, 0.5);
 @mixin theme-button-colors($dark-theme: true) {
   @if $dark-theme {
     background-color: $dark-button-background;
+    color: $dark-text-invalid-color;
+    border: 1px solid $dark-border-color;
+  }
+}
+
+@mixin theme-button-valid-colors($dark-theme: true) {
+  @if $dark-theme {
+    background-color: $dark-button-valid-background;
     color: $dark-text-color;
   }
 }
@@ -143,7 +153,11 @@ footer {
     padding: 0.5rem;
     border-radius: 0.4rem;
     font-size: 1.2rem;
-    border: none;
+    transition: all 0.3s ease;
     cursor: pointer;
+
+    &.valid {
+      @include theme-button-valid-colors($dark-theme: true);
+    }
   }
 }
