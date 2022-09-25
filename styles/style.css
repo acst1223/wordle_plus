@@ -52,6 +52,7 @@ main {
   flex-wrap: wrap;
   flex-direction: column;
   align-items: center;
+  font-size: 2rem;
 }
 main div.row {
   --columns: 6;
@@ -69,7 +70,6 @@ main div.row div.cell {
   background-color: rgb(16, 18, 16);
   color: white;
   border: 1px solid rgba(255, 255, 255, 0.5);
-  font-size: 2rem;
   width: var(--side-length);
   height: var(--side-length);
   display: flex;
