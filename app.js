@@ -120,6 +120,7 @@ button.addEventListener("click", () => {
     return;
   }
   inputBox.value = "";
+  button.classList.remove("valid");
   judgeRes = judge(v, goal);
   res = judgeRes[0];
   allCorrect = judgeRes[1];
