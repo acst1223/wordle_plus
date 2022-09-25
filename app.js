@@ -67,3 +67,46 @@ inputBox.addEventListener("input", () => {
     button.classList.remove("valid");
   }
 });
+
+/**
+ * Judge correctness
+ */
+
+function judge(trial, answer) {
+  let res = new Array(wordLength);
+  let stat = {};
+  for (let i = 0; i < trial.length; i++) {
+    stat[trial[i]] = 0;
+  }
+}
+
+/**
+ * New trial.
+ */
+
+button.addEventListener("click", () => {
+  let v = inputBox.value;
+  if (langGame == "en") {
+    v = v.toUpperCase();
+  }
+  if (!checkInput(v)) {
+    return;
+  }
+  inputBox.value = "";
+
+  let rows = main.querySelectorAll("div.row");
+  let lastRow = rows[rows.length - 1];
+  let lastRowCells = lastRow.querySelectorAll("div.cell");
+  for (let i = 0; i < wordLength; i++) {
+    lastRowCells[i].innerHTML = v[i];
+  }
+
+  let newRow = document.createElement("div");
+  newRow.classList.add("row");
+  for (let i = 0; i < wordLength; i++) {
+    let newCell = document.createElement("div");
+    newCell.classList.add("cell");
+    newRow.appendChild(newCell);
+  }
+  main.appendChild(newRow);
+});

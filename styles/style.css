@@ -76,6 +76,15 @@ main div.row div.cell {
   justify-content: center;
   align-items: center;
 }
+main div.row div.cell.correct {
+  background-color: rgb(36, 159, 36);
+}
+main div.row div.cell.close {
+  background-color: rgb(216, 156, 60);
+}
+main div.row div.cell.wrong {
+  background-color: rgb(148, 121, 121);
+}
 
 footer {
   display: flex;
@@ -106,9 +115,9 @@ footer button {
   border-radius: 0.4rem;
   font-size: 1.2rem;
   transition: all 0.3s ease;
-  cursor: pointer;
 }
 footer button.valid {
   background-color: rgb(78, 118, 177);
   color: white;
+  cursor: pointer;
 }/*# sourceMappingURL=style.css.map */

@@ -4,6 +4,9 @@ $dark-text-invalid-color: rgb(255, 255, 255, 0.3);
 $dark-button-valid-background: rgb(78, 118, 177);
 $dark-button-background: rgb(16, 18, 16);
 $dark-border-color: rgba(255, 255, 255, 0.5);
+$background-correct: rgb(36, 159, 36);
+$background-close: rgb(216, 156, 60);
+$background-wrong: rgb(148, 121, 121);
 
 @mixin theme-colors($dark-theme: true) {
   @if $dark-theme {
@@ -124,6 +127,16 @@ main {
       display: flex;
       justify-content: center;
       align-items: center;
+
+      &.correct {
+        background-color: $background-correct;
+      }
+      &.close {
+        background-color: $background-close;
+      }
+      &.wrong {
+        background-color: $background-wrong;
+      }
     }
   }
 }
@@ -154,10 +167,10 @@ footer {
     border-radius: 0.4rem;
     font-size: 1.2rem;
     transition: all 0.3s ease;
-    cursor: pointer;
 
     &.valid {
       @include theme-button-valid-colors($dark-theme: true);
+      cursor: pointer;
     }
   }
 }
