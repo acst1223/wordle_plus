@@ -1,3 +1,7 @@
+const CORRECT = "correct";
+const CLOSE = "close";
+const WRONG = "wrong";
+
 let langGame = "en";
 let wordLength = 6;
 let words = null; // all words
@@ -7,6 +11,8 @@ let firstCell = document.querySelector("div.cell");
 let main = document.querySelector("main");
 let inputBox = document.querySelector("input.main");
 let button = document.querySelector("button.main");
+
+let goal = "ANIMAL";
 
 /**
  * Load data from dicts.
@@ -73,11 +79,32 @@ inputBox.addEventListener("input", () => {
  */
 
 function judge(trial, answer) {
+  allCorrect = true;
   let res = new Array(wordLength);
   let stat = {};
-  for (let i = 0; i < trial.length; i++) {
+  for (let i = 0; i < wordLength; i++) {
     stat[trial[i]] = 0;
+    stat[answer[i]] = 0;
   }
+  for (let i = 0; i < wordLength; i++) {
+    if (trial[i] == answer[i]) {
+      res[i] = CORRECT;
+    } else {
+      stat[answer[i]]++;
+      allCorrect = false;
+    }
+  }
+  for (let i = 0; i < wordLength; i++) {
+    if (res[i] !== CORRECT) {
+      if (stat[trial[i]] > 0) {
+        res[i] = CLOSE;
+        stat[trial[i]]--;
+      } else {
+        res[i] = WRONG;
+      }
+    }
+  }
+  return [res, allCorrect];
 }
 
 /**
@@ -93,12 +120,21 @@ button.addEventListener("click", () => {
     return;
   }
   inputBox.value = "";
+  judgeRes = judge(v, goal);
+  res = judgeRes[0];
+  allCorrect = judgeRes[1];
+  console.log(res);
 
   let rows = main.querySelectorAll("div.row");
   let lastRow = rows[rows.length - 1];
   let lastRowCells = lastRow.querySelectorAll("div.cell");
   for (let i = 0; i < wordLength; i++) {
     lastRowCells[i].innerHTML = v[i];
+    lastRowCells[i].classList.add(res[i]);
+  }
+
+  if (allCorrect) {
+    return;
   }
 
   let newRow = document.createElement("div");

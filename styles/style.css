@@ -75,6 +75,7 @@ main div.row div.cell {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all 0.6s ease;
 }
 main div.row div.cell.correct {
   background-color: rgb(36, 159, 36);
@@ -83,7 +84,7 @@ main div.row div.cell.close {
   background-color: rgb(216, 156, 60);
 }
 main div.row div.cell.wrong {
-  background-color: rgb(148, 121, 121);
+  background-color: rgb(87, 74, 74);
 }
 
 footer {
