@@ -25,6 +25,14 @@ $dark-border-color: rgba(255, 255, 255, 0.5);
   }
 }
 
+@mixin theme-cell-colors($dark-theme: true) {
+  @if $dark-theme {
+    background-color: $dark-background-color;
+    color: $dark-text-color;
+    border: 1px solid $dark-border-color;
+  }
+}
+
 @mixin theme-shadows($dark-theme: true) {
   @if $dark-theme {
     box-shadow: 0 0.1rem 0.5rem white;
@@ -76,6 +84,35 @@ nav {
           cursor: pointer;
         }
       }
+    }
+  }
+}
+
+main {
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  div.row {
+    --columns: 6;
+    --gutter: 20px;
+    --row-width: min(600px, 80vw);
+    --side-length: calc(
+      (var(--row-width) - var(--gutter) * (var(--columns) - 1)) / var(--columns)
+    );
+    width: var(--row-width);
+    display: flex;
+    padding: calc(var(--gutter) / 2) 0;
+    justify-content: space-between;
+    div.cell {
+      @include theme-cell-colors($dark-theme: true);
+      font-size: 2rem;
+      width: var(--side-length);
+      height: var(--side-length);
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
