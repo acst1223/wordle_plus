@@ -66,5 +66,4 @@ inputBox.addEventListener("input", () => {
   } else {
     button.classList.remove("valid");
   }
-  console.log(v, checkInput(v));
 });
