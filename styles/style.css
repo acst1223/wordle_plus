@@ -21,6 +21,7 @@ nav {
   background-color: rgb(16, 18, 16);
   color: white;
   z-index: 1;
+  margin-bottom: 1.5rem;
 }
 nav ul {
   list-style: none;
@@ -46,7 +47,7 @@ nav ul li i:hover {
 }
 
 main {
-  padding: 0.5rem;
+  padding: 0;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -54,7 +55,7 @@ main {
 }
 main div.row {
   --columns: 6;
-  --gutter: 20px;
+  --gutter: 10px;
   --row-width: min(600px, 80vw);
   --side-length: calc(
     (var(--row-width) - var(--gutter) * (var(--columns) - 1)) / var(--columns)
