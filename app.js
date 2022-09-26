@@ -197,7 +197,7 @@ button.addEventListener("click", () => {
  */
 function getLastMidnightTimestamp() {
   let d = new Date();
-  d.setHours(0, 0, 0, 0);
+  d.setMinutes(0, 0, 0);
   return Math.floor(d.valueOf() / 1000);
 }
 
