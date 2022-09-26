@@ -2,9 +2,13 @@ const CORRECT = "correct";
 const CLOSE = "close";
 const WRONG = "wrong";
 
+const MIN_WORD_LENGTH = 4;
+const MAX_WORD_LENGTH = 8;
+
 let langGame = "en";
 let wordLength = 6;
 let words = null; // all words
+let wordLenDict = null; // A mapping from the length of words to word lists.
 let alphabet = null; // alphabet
 
 let firstCell = document.querySelector("div.cell");
@@ -12,11 +16,32 @@ let main = document.querySelector("main");
 let inputBox = document.querySelector("input.main");
 let button = document.querySelector("button.main");
 
-let goal = "ANIMAL";
+let goal = null;
 
 /**
  * Load data from dicts.
  */
+
+function loadWordLenDict() {
+  let res = {};
+  for (let i = MIN_WORD_LENGTH; i <= MAX_WORD_LENGTH; i++) {
+    res[i] = [];
+  }
+
+  words.forEach((w) => {
+    if (w.length >= MIN_WORD_LENGTH && w.length <= MAX_WORD_LENGTH) {
+      res[w.length].push(w);
+    }
+  });
+
+  for (let i = MIN_WORD_LENGTH; i <= MAX_WORD_LENGTH; i++) {
+    if (res[i].length == 0) {
+      console.error(`No word of length ${i}`);
+    }
+  }
+
+  wordLenDict = res;
+}
 
 function loadData() {
   fetch(`dicts/${langGame}.json`)
@@ -28,10 +53,26 @@ function loadData() {
         s.add(data.alphabet[i]);
       }
       alphabet = s;
+
+      // load wordLenDict
+      loadWordLenDict();
+
+      // set goal
+      setGoal();
     });
 }
 loadData();
 
+/**
+ * Set goal.
+ */
+function setGoal() {
+  let pool = wordLenDict[wordLength];
+  goal = pool[Math.floor(Math.random() * pool.length)];
+
+  // cheat
+  console.log(`Goal "${goal}" has been set.`);
+}
 /**
  * Set cell font size.
  * Reset when resizing window.
@@ -119,12 +160,14 @@ button.addEventListener("click", () => {
   if (!checkInput(v)) {
     return;
   }
+  if (goal === null) {
+    return; // temporary
+  }
   inputBox.value = "";
   button.classList.remove("valid");
   judgeRes = judge(v, goal);
   res = judgeRes[0];
   allCorrect = judgeRes[1];
-  console.log(res);
 
   let rows = main.querySelectorAll("div.row");
   let lastRow = rows[rows.length - 1];
