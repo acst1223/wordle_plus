@@ -68,7 +68,8 @@ loadData();
  */
 function setGoal() {
   let pool = wordLenDict[wordLength];
-  goal = pool[Math.floor(Math.random() * pool.length)];
+  // goal = pool[Math.floor(Math.random() * pool.length)];
+  goal = pool[hashInteger(getLastMidnightTimestamp()) % pool.length];
 
   // cheat
   console.log(`Goal "${goal}" has been set.`);
@@ -190,3 +191,20 @@ button.addEventListener("click", () => {
   }
   main.appendChild(newRow);
 });
+
+/**
+ * Get the timestamp of the last midnight date.
+ */
+function getLastMidnightTimestamp() {
+  let d = new Date();
+  d.setHours(0, 0, 0, 0);
+  return Math.floor(d.valueOf() / 1000);
+}
+
+/**
+ * Hash an integer.
+ */
+
+function hashInteger(x) {
+  return (x + 347446) % 999983;
+}
