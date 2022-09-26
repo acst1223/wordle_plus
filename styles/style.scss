@@ -62,6 +62,8 @@ $background-wrong: rgb(87, 74, 74);
   &:focus {
     outline: none;
   }
+
+  --word-length: 6;
 }
 
 body {
@@ -110,7 +112,7 @@ main {
   align-items: center;
   font-size: 2rem;
   div.row {
-    --columns: 6;
+    --columns: var(--word-length);
     --gutter: 10px;
     --row-width: min(600px, 80vw);
     --side-length: calc(
