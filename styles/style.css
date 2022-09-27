@@ -28,7 +28,6 @@ nav ul {
   list-style: none;
   display: flex;
   padding: 1rem;
-  justify-content: space-between;
   align-items: center;
   font-size: 2rem;
 }
@@ -39,9 +38,13 @@ nav ul li {
 nav ul li.logo {
   font-weight: bold;
 }
+nav ul li.first-right {
+  margin-left: auto;
+}
 nav ul li i {
+  display: flex;
+  text-align: right;
   font-size: 1.5rem;
-  transform: translateY(-5%);
 }
 nav ul li i:hover {
   cursor: pointer;
