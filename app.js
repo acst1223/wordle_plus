@@ -246,7 +246,7 @@ function getLastMidnightTimestamp() {
  */
 
 function hashInteger(x) {
-  return (x + 347447) % 999983;
+  return (x + 347448) % 999983;
 }
 
 /**
