@@ -10,12 +10,17 @@ let wordLength = 6;
 let words = null; // all words
 let wordLenDict = null; // A mapping from the length of words to word lists.
 let alphabet = null; // alphabet
+let alphabetStr = null; // A string of alphabet
+let alphabetCellDict = null; // A mapping from each character to corresponding char cell
 
+let infoIcon = document.querySelector("i.fa-info");
+let infoOverlay = document.querySelector("section.overlay-info");
+let infoPopup = infoOverlay.querySelector("div.popup");
+let charGrid = infoOverlay.querySelector("div.char-grid");
 let firstCell = document.querySelector("div.cell");
 let main = document.querySelector("main");
 let inputBox = document.querySelector("input.main");
 let button = document.querySelector("button.main");
-
 let goal = null;
 
 /**
@@ -43,22 +48,42 @@ function loadWordLenDict() {
   wordLenDict = res;
 }
 
+/**
+ * Set up character grid.
+ */
+function setupCharGrid() {
+  charGrid.innerHTML = "";
+  alphabetCellDict = {};
+  for (let i = 0; i < alphabetStr.length; i++) {
+    let newCharCell = document.createElement("div");
+    newCharCell.innerText = alphabetStr[i];
+    newCharCell.classList.add("char-cell");
+    charGrid.appendChild(newCharCell);
+    alphabetCellDict[alphabetStr[i]] = newCharCell;
+  }
+}
+
 function loadData() {
   fetch(`dicts/${langGame}.json`)
     .then((response) => response.json())
     .then((data) => {
       words = data.words;
       let s = new Set();
+
       for (let i = 0; i < data.alphabet.length; i++) {
         s.add(data.alphabet[i]);
       }
       alphabet = s;
+      alphabetStr = data.alphabet;
 
       // load wordLenDict
       loadWordLenDict();
 
       // set goal
       setGoal();
+
+      // setup char grid
+      setupCharGrid();
     });
 }
 loadData();
@@ -176,6 +201,21 @@ button.addEventListener("click", () => {
   for (let i = 0; i < wordLength; i++) {
     lastRowCells[i].innerHTML = v[i];
     lastRowCells[i].classList.add(res[i]);
+    let cl = alphabetCellDict[v[i]].classList;
+    if (res[i] == CORRECT) {
+      cl.add(CORRECT);
+      cl.remove(CLOSE);
+      cl.remove(WRONG);
+    } else if (res[i] == CLOSE) {
+      if (!cl.contains(CORRECT)) {
+        cl.add(CLOSE);
+        cl.remove(WRONG);
+      }
+    } else if (res[i] == WRONG) {
+      if (!cl.contains(CORRECT) && !cl.contains(CLOSE)) {
+        cl.add(WRONG);
+      }
+    }
   }
 
   if (allCorrect) {
@@ -206,5 +246,20 @@ function getLastMidnightTimestamp() {
  */
 
 function hashInteger(x) {
-  return (x + 347446) % 999983;
+  return (x + 347447) % 999983;
 }
+
+/**
+ * Overlay info show/hide event.
+ */
+infoIcon.addEventListener("click", () => {
+  infoOverlay.classList.add("show");
+});
+
+infoOverlay.addEventListener("click", () => {
+  infoOverlay.classList.remove("show");
+});
+
+infoPopup.addEventListener("click", (e) => {
+  e.stopPropagation();
+});

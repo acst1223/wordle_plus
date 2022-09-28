@@ -17,10 +17,16 @@
       <ul>
         <li class="logo">Wordle+</li>
         <li class="first-right">
-          <i class="fa-solid fa-info"></i>
+          <i
+            class="fa-solid fa-info"
+            style="width: 2rem; text-align: center"
+          ></i>
         </li>
         <li>
-          <i class="fa-solid fa-gear" style="width: 3rem"></i>
+          <i
+            class="fa-solid fa-gear"
+            style="width: 2rem; text-align: right"
+          ></i>
         </li>
       </ul>
     </nav>
@@ -34,6 +40,16 @@
         <div class="cell"></div>
       </div>
     </main>
+    <section class="overlay overlay-info">
+      <div class="popup">
+        <!-- This wrap is meant for centering its content while scrolling properly when overflowing.
+        https://stackoverflow.com/questions/33454533/cant-scroll-to-top-of-flex-item-that-is-overflowing-container -->
+        <div class="margin-wrap">
+          <h3>速查表</h3>
+          <div class="char-grid"></div>
+        </div>
+      </div>
+    </section>
     <footer>
       <input class="main" value="" maxlength="6" />
       <button class="main">确定</button>
