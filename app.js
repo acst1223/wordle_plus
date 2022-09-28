@@ -219,6 +219,7 @@ button.addEventListener("click", () => {
   }
 
   if (allCorrect) {
+    setTimeout(userWin, 600);
     return;
   }
 
@@ -231,6 +232,15 @@ button.addEventListener("click", () => {
   }
   main.appendChild(newRow);
 });
+
+/**
+ * Process for winning the game
+ */
+function userWin() {
+  inputBox.maxLength = 32767;
+  inputBox.value = "Congratulations!";
+  inputBox.readOnly = true;
+}
 
 /**
  * Get the timestamp of the last midnight date.
