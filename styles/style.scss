@@ -83,8 +83,6 @@ $background-wrong: rgb(87, 74, 74);
   &:focus {
     outline: none;
   }
-
-  --word-length: 6;
 }
 
 body {
@@ -129,6 +127,7 @@ nav {
 }
 
 main {
+  --word-length: 6;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
@@ -248,6 +247,11 @@ section.overlay {
             &.selected {
               @include theme-option-selected-color($dark-theme: true);
             }
+          }
+
+          div.settings-option-word-length {
+            padding: 0 0.4rem;
+            margin-left: 0.5rem;
           }
         }
       }

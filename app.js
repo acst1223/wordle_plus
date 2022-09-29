@@ -33,6 +33,13 @@ let settingsOptionDictLangGame = {
   ja: settingsItemLangGame.querySelector(".ja"),
 };
 
+let settingsItemWordLength = settingsOverlay.querySelector(
+  ".settings-item-word-length"
+);
+let settingsOptionsWordLength = settingsItemWordLength.querySelectorAll(
+  "div.settings-option-word-length"
+);
+
 let firstRow = document.querySelector("div.row");
 let firstCell = document.querySelector("div.cell");
 let main = document.querySelector("main");
@@ -133,7 +140,7 @@ function setCellFontSize() {
 }
 setCellFontSize();
 addEventListener("resize", () => {
-  setCellFontSize();
+  setTimeout(setCellFontSize, 650);
 });
 
 /**
@@ -338,6 +345,9 @@ function resetCells() {
     cell.innerHTML = "";
     cell.classList.remove(CORRECT, CLOSE, WRONG);
   });
+
+  if (cells.length < wordLength) {
+  }
 }
 
 /**
@@ -354,6 +364,19 @@ for (let [k, v] of Object.entries(settingsOptionDictLangGame)) {
     loadData();
   });
 }
+
+/**
+ * Word length selection events.
+ */
+settingsOptionsWordLength.forEach((o) => {
+  o.addEventListener("click", () => {
+    if (o.classList.contains("selected")) return;
+    settingsOptionsWordLength.forEach((option) => {
+      option.classList.remove("selected");
+    });
+    o.classList.add("selected");
+  });
+});
 
 /**
  * Ja tools

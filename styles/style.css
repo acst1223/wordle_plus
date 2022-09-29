@@ -3,7 +3,6 @@
   margin: 0;
   box-sizing: border-box;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  --word-length: 6;
 }
 *:focus {
   outline: none;
@@ -50,6 +49,7 @@ nav ul li i:hover {
 }
 
 main {
+  --word-length: 6;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
@@ -167,6 +167,10 @@ section.overlay div.popup div.margin-wrap ul.settings li.settings-item div.setti
 section.overlay div.popup div.margin-wrap ul.settings li.settings-item div.settings-option.selected {
   background-color: white;
   color: rgb(16, 18, 16);
+}
+section.overlay div.popup div.margin-wrap ul.settings li.settings-item div.settings-option-word-length {
+  padding: 0 0.4rem;
+  margin-left: 0.5rem;
 }
 
 section.show {
