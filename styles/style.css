@@ -148,6 +148,26 @@ section.overlay div.popup div.margin-wrap div.char-grid div.char-cell.close {
 section.overlay div.popup div.margin-wrap div.char-grid div.char-cell.wrong {
   color: rgb(87, 74, 74);
 }
+section.overlay div.popup div.margin-wrap ul.settings {
+  margin-top: 2rem;
+}
+section.overlay div.popup div.margin-wrap ul.settings li.settings-item {
+  display: flex;
+  padding: 0.2rem 1rem;
+}
+section.overlay div.popup div.margin-wrap ul.settings li.settings-item div.settings-name {
+  margin-right: auto;
+  padding: 0 0.5rem;
+}
+section.overlay div.popup div.margin-wrap ul.settings li.settings-item div.settings-option {
+  padding: 0 0.5rem;
+  border-radius: 1rem;
+  transition: all 0.3s ease;
+}
+section.overlay div.popup div.margin-wrap ul.settings li.settings-item div.settings-option.selected {
+  background-color: white;
+  color: rgb(16, 18, 16);
+}
 
 section.show {
   visibility: visible;

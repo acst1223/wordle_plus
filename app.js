@@ -16,8 +16,23 @@ let alphabetCellDict = null; // A mapping from each character to corresponding c
 let infoIcon = document.querySelector("i.fa-info");
 let infoOverlay = document.querySelector("section.overlay-info");
 let infoPopup = infoOverlay.querySelector("div.popup");
-let settingsIcon = document.querySelector("i.fa-gear");
 let charGrid = infoOverlay.querySelector("div.char-grid");
+
+let settingsIcon = document.querySelector("i.fa-gear");
+let settingsOverlay = document.querySelector("section.overlay-settings");
+let settingsPopup = settingsOverlay.querySelector("div.popup");
+
+let settingsItemLangGame = settingsOverlay.querySelector(
+  ".settings-item-lang-game"
+);
+let settingsOptionsLangGame = settingsItemLangGame.querySelectorAll(
+  "div.settings-option-lang-game"
+);
+let settingsOptionDictLangGame = {
+  en: settingsItemLangGame.querySelector(".en"),
+  ja: settingsItemLangGame.querySelector(".ja"),
+};
+
 let firstRow = document.querySelector("div.row");
 let firstCell = document.querySelector("div.cell");
 let main = document.querySelector("main");
@@ -299,8 +314,15 @@ infoPopup.addEventListener("click", (e) => {
  * Overlay settings show/hide event.
  */
 settingsIcon.addEventListener("click", () => {
-  langGame = "ja";
-  loadData();
+  settingsOverlay.classList.add("show");
+});
+
+settingsOverlay.addEventListener("click", () => {
+  settingsOverlay.classList.remove("show");
+});
+
+settingsPopup.addEventListener("click", (e) => {
+  e.stopPropagation();
 });
 
 /**
@@ -315,6 +337,21 @@ function resetCells() {
   cells.forEach((cell) => {
     cell.innerHTML = "";
     cell.classList.remove(CORRECT, CLOSE, WRONG);
+  });
+}
+
+/**
+ * Game language selection events.
+ */
+for (let [k, v] of Object.entries(settingsOptionDictLangGame)) {
+  v.addEventListener("click", () => {
+    if (v.classList.contains("selected")) return;
+    settingsOptionsLangGame.forEach((option) => {
+      option.classList.remove("selected");
+    });
+    v.classList.add("selected");
+    langGame = k;
+    loadData();
   });
 }
 

@@ -46,6 +46,13 @@ $background-wrong: rgb(87, 74, 74);
   }
 }
 
+@mixin theme-option-selected-color($dark-theme: true) {
+  @if $dark-theme {
+    background-color: $dark-text-color;
+    color: $dark-background-color;
+  }
+}
+
 @mixin theme-overlay-colors($dark-theme: true) {
   @if $dark-theme {
     background-color: $dark-background-color;
@@ -217,6 +224,30 @@ section.overlay {
           }
           &.wrong {
             color: $background-wrong;
+          }
+        }
+      }
+
+      ul.settings {
+        margin-top: 2rem;
+
+        li.settings-item {
+          display: flex;
+          padding: 0.2rem 1rem;
+
+          div.settings-name {
+            margin-right: auto;
+            padding: 0 0.5rem;
+          }
+
+          div.settings-option {
+            padding: 0 0.5rem;
+            border-radius: 1rem;
+            transition: all 0.3s ease;
+
+            &.selected {
+              @include theme-option-selected-color($dark-theme: true);
+            }
           }
         }
       }
