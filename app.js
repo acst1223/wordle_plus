@@ -141,6 +141,8 @@ inputBox.addEventListener("input", () => {
   let v = inputBox.value;
   if (langGame == "en") {
     v = v.toUpperCase();
+  } else if (langGame == "ja") {
+    v = hiraganaWord2katakanaWord(v);
   }
   if (checkInput(v)) {
     button.classList.add("valid");
@@ -190,6 +192,8 @@ button.addEventListener("click", () => {
   let v = inputBox.value;
   if (langGame == "en") {
     v = v.toUpperCase();
+  } else if (langGame == "ja") {
+    v = hiraganaWord2katakanaWord(v);
   }
   if (!checkInput(v)) {
     return;
@@ -295,6 +299,7 @@ infoPopup.addEventListener("click", (e) => {
  * Overlay settings show/hide event.
  */
 settingsIcon.addEventListener("click", () => {
+  langGame = "ja";
   loadData();
 });
 
@@ -311,4 +316,28 @@ function resetCells() {
     cell.innerHTML = "";
     cell.classList.remove(CORRECT, CLOSE, WRONG);
   });
+}
+
+/**
+ * Ja tools
+ */
+
+function isHiragana(c) {
+  let o = c.charCodeAt(0);
+  return o >= 12353 && o <= 12438;
+}
+
+function hiragana2katakana(c) {
+  if (isHiragana(c)) {
+    return String.fromCharCode(c.charCodeAt(0) + 96);
+  }
+  return c;
+}
+
+function hiraganaWord2katakanaWord(w) {
+  let res = [];
+  for (let i = 0; i < w.length; i++) {
+    res.push(hiragana2katakana(w[i]));
+  }
+  return res.join("");
 }
