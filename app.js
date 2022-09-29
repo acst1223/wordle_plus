@@ -16,7 +16,9 @@ let alphabetCellDict = null; // A mapping from each character to corresponding c
 let infoIcon = document.querySelector("i.fa-info");
 let infoOverlay = document.querySelector("section.overlay-info");
 let infoPopup = infoOverlay.querySelector("div.popup");
+let settingsIcon = document.querySelector("i.fa-gear");
 let charGrid = infoOverlay.querySelector("div.char-grid");
+let firstRow = document.querySelector("div.row");
 let firstCell = document.querySelector("div.cell");
 let main = document.querySelector("main");
 let inputBox = document.querySelector("input.main");
@@ -63,6 +65,10 @@ function setupCharGrid() {
   }
 }
 
+/**
+ * Load data.
+ */
+
 function loadData() {
   fetch(`dicts/${langGame}.json`)
     .then((response) => response.json())
@@ -85,6 +91,8 @@ function loadData() {
       // setup char grid
       setupCharGrid();
     });
+  resetCells();
+  initInputBox();
 }
 loadData();
 
@@ -234,6 +242,15 @@ button.addEventListener("click", () => {
 });
 
 /**
+ * Init input box.
+ */
+function initInputBox() {
+  inputBox.maxLength = wordLength;
+  inputBox.value = "";
+  inputBox.readOnly = false;
+}
+
+/**
  * Process for winning the game
  */
 function userWin() {
@@ -273,3 +290,25 @@ infoOverlay.addEventListener("click", () => {
 infoPopup.addEventListener("click", (e) => {
   e.stopPropagation();
 });
+
+/**
+ * Overlay settings show/hide event.
+ */
+settingsIcon.addEventListener("click", () => {
+  loadData();
+});
+
+/**
+ * Reset cells.
+ */
+function resetCells() {
+  let rows = main.querySelectorAll("div.row");
+  for (let i = 1; i < rows.length; i++) {
+    rows[i].remove();
+  }
+  let cells = firstRow.querySelectorAll("div.cell");
+  cells.forEach((cell) => {
+    cell.innerHTML = "";
+    cell.classList.remove(CORRECT, CLOSE, WRONG);
+  });
+}
