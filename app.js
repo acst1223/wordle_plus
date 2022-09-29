@@ -2,6 +2,8 @@ const CORRECT = "correct";
 const CLOSE = "close";
 const WRONG = "wrong";
 
+const WORD_LENGTH_PROPERTY = "--word-length";
+
 const MIN_WORD_LENGTH = 4;
 const MAX_WORD_LENGTH = 8;
 
@@ -347,6 +349,19 @@ function resetCells() {
   });
 
   if (cells.length < wordLength) {
+    main.style.setProperty(WORD_LENGTH_PROPERTY, wordLength);
+    let diff = wordLength - cells.length;
+    for (let i = 0; i < diff; i++) {
+      let newCell = document.createElement("div");
+      newCell.classList.add("cell");
+      firstRow.appendChild(newCell);
+    }
+  } else if (cells.length > wordLength) {
+    let l = cells.length;
+    for (let i = wordLength; i < l; i++) {
+      cells[i].remove();
+    }
+    main.style.setProperty(WORD_LENGTH_PROPERTY, wordLength);
   }
 }
 
@@ -375,6 +390,8 @@ settingsOptionsWordLength.forEach((o) => {
       option.classList.remove("selected");
     });
     o.classList.add("selected");
+    wordLength = Number(o.innerHTML);
+    loadData();
   });
 });
 
