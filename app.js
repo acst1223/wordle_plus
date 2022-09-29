@@ -42,6 +42,8 @@ let settingsOptionsWordLength = settingsItemWordLength.querySelectorAll(
   "div.settings-option-word-length"
 );
 
+let githubIcon = document.querySelector("i.fa-github");
+
 let firstRow = document.querySelector("div.row");
 let firstCell = document.querySelector("div.cell");
 let main = document.querySelector("main");
@@ -418,3 +420,10 @@ function hiraganaWord2katakanaWord(w) {
   }
   return res.join("");
 }
+
+/**
+ * Press the Github icon.
+ */
+githubIcon.addEventListener("click", () => {
+  window.open("https://github.com/acst1223/wordle_plus");
+});
