@@ -131,7 +131,7 @@ function setGoal() {
   goal = pool[hashInteger(getLastMidnightTimestamp()) % pool.length];
 
   // cheat
-  console.log(`Goal "${goal}" has been set.`);
+  // console.log(`Goal "${goal}" has been set.`);
 }
 /**
  * Set cell font size.
