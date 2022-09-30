@@ -29,9 +29,15 @@ def checkInAlphabet(w, alphabet):
 def hiraganaWord2katakanaWord(w):
     return ''.join([hiragana2katakana(c) for c in w])
 
+with open("../dicts/n1-n5.txt") as f:
+    n1WordList = f.readlines()
+    n1WordList = [w.strip().split(",")[1] for w in n1WordList]
+    n1WordList = set(n1WordList)
+    print("#N1 Word List:", len(n1WordList))
+
 with open("../dicts/JmdictFurigana.json", encoding="utf-8-sig") as f:
     lines = json.load(f)
-    raw_readings = [line['reading'] for line in lines]
+    raw_readings = [line['reading'] for line in lines if line["text"] in n1WordList]
     raw_readings = set(raw_readings)
     print("#raw_readings:", len(raw_readings))
 
