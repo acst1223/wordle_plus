@@ -33,6 +33,7 @@ let settingsOptionsLangGame = settingsItemLangGame.querySelectorAll(
 let settingsOptionDictLangGame = {
   en: settingsItemLangGame.querySelector(".en"),
   ja: settingsItemLangGame.querySelector(".ja"),
+  es: settingsItemLangGame.querySelector(".es"),
 };
 
 let settingsItemWordLength = settingsOverlay.querySelector(
@@ -165,7 +166,7 @@ function checkInput(input) {
 
 inputBox.addEventListener("input", () => {
   let v = inputBox.value;
-  if (langGame == "en") {
+  if (langGame == "en" || langGame == "es") {
     v = v.toUpperCase();
   } else if (langGame == "ja") {
     v = hiraganaWord2katakanaWord(v);
@@ -216,7 +217,7 @@ function judge(trial, answer) {
 
 button.addEventListener("click", () => {
   let v = inputBox.value;
-  if (langGame == "en") {
+  if (langGame == "en" || langGame == "es") {
     v = v.toUpperCase();
   } else if (langGame == "ja") {
     v = hiraganaWord2katakanaWord(v);

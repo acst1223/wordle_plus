@@ -233,9 +233,11 @@ section.overlay {
         li.settings-item {
           display: flex;
           padding: 0.2rem 1rem;
+          flex-wrap: wrap;
+          justify-content: flex-end;
 
           div.settings-name {
-            margin-right: auto;
+            width: 100%;
             padding: 0 0.5rem;
           }
 

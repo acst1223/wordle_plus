@@ -154,9 +154,11 @@ section.overlay div.popup div.margin-wrap ul.settings {
 section.overlay div.popup div.margin-wrap ul.settings li.settings-item {
   display: flex;
   padding: 0.2rem 1rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 section.overlay div.popup div.margin-wrap ul.settings li.settings-item div.settings-name {
-  margin-right: auto;
+  width: 100%;
   padding: 0 0.5rem;
 }
 section.overlay div.popup div.margin-wrap ul.settings li.settings-item div.settings-option {
